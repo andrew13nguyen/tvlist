@@ -35,7 +35,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tvlist_production
+  # database: tvlist_production
+  database: jywjdkwlqq
   pool: 5
   username: root
   password:

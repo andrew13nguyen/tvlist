@@ -7,10 +7,8 @@ class ListsController < ApplicationController
       @ongoing = List.get_ongoing(params[:sort])
       @complete = List.get_complete(params[:sort])
     else
-      # @ongoing = List.get_ongoing
-      # @complete = List.get_complete
-      @ongoing = List.all
-      @complete = List.all
+      @ongoing = List.get_ongoing
+      @complete = List.get_complete
     end
 
     respond_to do |format|
