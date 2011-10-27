@@ -14,11 +14,11 @@ a:hover {text-decoration: none;}
 
 #ongoing_list {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;}
 #ongoing_list ul {margin:0px;padding:0px;}
-#ongoing_list ul li {height:auto:width:auto;padding:5px 10px;list-style:none;}
+#ongoing_list ul li {height:auto;width:auto;padding:5px 10px;list-style:none;}
 
 #completed_list {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;display:none;}
 #completed_list ul {margin:0px;padding:0px;}
-#completed_list ul li {height:auto:width:auto;padding:5px 10px;list-style:none;}
+#completed_list ul li {height:auto;width:auto;padding:5px 10px;list-style:none;}
 
 .list_col1 {width:300px;}
 .list_col2 {width:100px;}
