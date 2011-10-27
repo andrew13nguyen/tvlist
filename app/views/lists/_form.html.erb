@@ -1,0 +1,30 @@
+<%= form_for(@list) do |f| %>
+	<% if @list.errors.any? %>
+	    <div id="error_explanation">
+			<h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+			<ul>
+				<% @list.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		<%= f.label :episode %><br />
+		<%= f.number_field :episode %>
+	</div>
+	<div class="field whitespace">
+		<%= f.label :ongoing %><br />
+		<%= f.check_box :ongoing %>
+	</div>
+	<div class="actions float_right">
+		<%= f.submit %>
+	</div>
+	<div style="clear:both;"></div>
+<% end %>

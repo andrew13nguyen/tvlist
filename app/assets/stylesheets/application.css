@@ -1,0 +1,38 @@
+body {margin:10px auto 10px;width:780px;background-color:#F8F8FF;font-family:Arial;font-size:12px;}
+/*body a {font-size:12px;}*/
+a:link {text-decoration: none}
+a:visited {text-decoration: none}
+a:active {text-decoration: none}
+a:hover {text-decoration: none;}
+
+.text_left {text-align:left;}
+.text_center {text-align:center;}
+.text_right {text-align:right;}
+.float_left {float:left;}
+.float_right {float:right;}
+.whitespace {margin-bottom:20px;}
+
+#ongoing_list {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;}
+#ongoing_list ul {margin:0px;padding:0px;}
+#ongoing_list ul li {height:auto:width:auto;padding:5px 10px;list-style:none;}
+
+#completed_list {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;display:none;}
+#completed_list ul {margin:0px;padding:0px;}
+#completed_list ul li {height:auto:width:auto;padding:5px 10px;list-style:none;}
+
+.list_col1 {width:300px;}
+.list_col2 {width:100px;}
+.list_col3 {width:100px;}
+.list_col4 {overflow:hidden;}
+
+.entry {border:none;border-top:solid 2px;border-color:gray;}
+
+
+
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
