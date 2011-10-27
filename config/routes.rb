@@ -1,8 +1,8 @@
 Tvlist::Application.routes.draw do
-  root :to => "home#index"
+  root :to => "lists#index"
   match '/:controller(/:action(/:id))'
-  match 'users', :to => "users#new"
-  match 'login', :to => "sessions#new"
+  # match 'users', :to => "users#new"
+  # match 'login', :to => "sessions#new"
 
   resources :lists
   # resources :users
