@@ -9,3 +9,40 @@
 	<a id="complete" href="#">[ + ] COMPLETED LIST</a>
 	<%= render :partial => "show_list", :locals => {:ul_id => "completed_list", :list => @complete} %>
 </div>
+
+<script type="text/javascript" language="javascript">
+	var toggle = "-";
+	$(document).ready(function() {
+		var ongoing_var = $.cookie("ongoing");
+	    var complete_var = $.cookie("complete");
+		if (ongoing_var == "hide")
+			$("#ongoing").click();
+		if (complete_var == "show")
+			$("#complete").click();
+	});
+	$("#ongoing").click(function() {
+		if ($(this).html() == "[ - ] ONGOING LIST") {
+			$(this).html("[ + ] ONGOING LIST");
+			$("#ongoing_list").hide();
+			$.cookie("ongoing", "hide");
+		} else {
+			$(this).html("[ - ] ONGOING LIST");
+			$("#ongoing_list").show();
+			$.cookie("ongoing", "show");
+		}
+		return false;
+	});
+	$("#complete").click(function() {
+		if ($(this).html() == "[ - ] COMPLETED LIST") {
+			$(this).html("[ + ] COMPLETED LIST");
+			$("#completed_list").hide();
+			$.cookie("complete", "hide");
+		} else {
+			$(this).html("[ - ] COMPLETED LIST");
+			$("#completed_list").show();
+			$.cookie("complete", "show");
+		}
+		return false;
+	});
+	
+</script>
