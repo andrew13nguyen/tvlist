@@ -6,7 +6,7 @@ Tvlist::Application.routes.draw do
   # match 'users', :to => "users#new"
   # match 'login', :to => "sessions#new"
 
-  # resources :lists
+  resources :lists
   # resources :users
   # resource :session
   
