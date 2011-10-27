@@ -1,1 +1,11 @@
 <h1 class="text_center">TV Listings</h1>
+
+<div class="whitespace">
+	<a id="ongoing" href="#">[ - ] ONGOING LIST</a>
+	<%= render :partial => "show_list", :locals => {:ul_id => "ongoing_list", :list => @ongoing} %>
+</div>
+
+<div class="whitespace">
+	<a id="complete" href="#">[ + ] COMPLETED LIST</a>
+	<%= render :partial => "show_list", :locals => {:ul_id => "completed_list", :list => @complete} %>
+</div>
