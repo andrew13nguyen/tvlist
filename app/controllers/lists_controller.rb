@@ -4,11 +4,13 @@ class ListsController < ApplicationController
   def index
     # @lists = List.all
     unless params[:sort].nil?
-      # @ongoing = List.get_ongoing(params[:sort])
-      # @complete = List.get_complete(params[:sort])
+      @ongoing = List.get_ongoing(params[:sort])
+      @complete = List.get_complete(params[:sort])
     else
       # @ongoing = List.get_ongoing
       # @complete = List.get_complete
+      @ongoing = List.all
+      @complete = List.all
     end
 
     respond_to do |format|
