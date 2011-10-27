@@ -1,6 +1,4 @@
 source 'http://rubygems.org'
-source :gemcutter
-gem 'sinatra', '1.0'
 
 gem 'rails', '3.1.1'
 
@@ -20,6 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'pg'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
