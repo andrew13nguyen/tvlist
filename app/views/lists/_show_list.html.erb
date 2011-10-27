@@ -26,27 +26,8 @@
 			<div style="clear:both;"></div>
 		</li>
 		<div style="clear:both;"></div>
-		<div >
-		<% list.each do |series| %>
-			<li class="entry">
-				<div class="list_col1 float_left"><%= series.title %></div>
-				<div class="list_col2 text_center float_left"><%= series.episode %></div>
-				<div class="list_col3 text_center float_left"><%= series.updated_at.strftime("%B %d, %Y") %></div>
-				<div class="list_col4 text_center">
-					<% if "#{ul_id}" == "ongoing_list"%>
-						<%= link_to "Watched", list_path(series, :list => {:episode => series[:episode].next}), :method => :put %>&nbsp;&nbsp;
-						<%= link_to "Edit", edit_list_path(series) %>&nbsp;&nbsp;
-						<%= link_to "Complete?", list_path(series, :list => {:ongoing => false}), :method => :put %>&nbsp;&nbsp;
-						<%= link_to "Delete", series, :confirm => 'Are you sure?', :method => :delete %>
-					<% else %>
-						Watched&nbsp;&nbsp;
-						<%= link_to "Edit", edit_list_path(series) %>&nbsp;&nbsp;
-						Completed&nbsp;&nbsp;
-						Delete
-					<% end %>
-				</div>
-			</li>
-		<% end %>
+			
+
 		<% if "#{ul_id}" == "ongoing_list" %>
 			<li class="entry">
 				<div class="list_col2 float_right"><%= link_to 'New Series', new_list_path %></div>
@@ -55,4 +36,3 @@
 		<% end %>
 	</ul>
 </div>
-<td></td>
