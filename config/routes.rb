@@ -8,7 +8,7 @@ Tvlist::Application.routes.draw do
   # resources :users
   # resource :session
 
-  match '/:controller(/:action(/:id))'
+  # match '/:controller(/:action(/:id))'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
