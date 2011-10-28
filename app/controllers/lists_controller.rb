@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  http_basic_authenticate_with :name => "asdf", :password => "asdf"
+  
   # GET /lists
   # GET /lists.json
   def index
