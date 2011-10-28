@@ -31,13 +31,22 @@ test:
   password:
   socket: /tmp/mysql.sock
 
-production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  # database: tvlist_production
+# Database information for Heroku
+production: 
+  encoding: unicode
+  adapter: postgresql
+  username: jywjdkwlqq
+  port: 5432
+  host: ec2-107-20-148-48.compute-1.amazonaws.com
   database: jywjdkwlqq
-  pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  password: S9YpfzLcWuVnbwN3JK2z
+
+# production:
+#   adapter: mysql2
+#   encoding: utf8
+#   reconnect: false
+#   database: tvlist_production
+#   pool: 5
+#   username: root
+#   password:
+#   socket: /tmp/mysql.sock
