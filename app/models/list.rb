@@ -4,14 +4,14 @@ class List < ActiveRecord::Base
   
   def self.get_ongoing(sort = "title")
     sql_str = <<SQLSTR
-SELECT `lists`.* FROM `lists` WHERE `lists`.ongoing = TRUE ORDER BY #{sort}
+SELECT lists.* FROM lists WHERE lists.ongoing = TRUE ORDER BY #{sort}
 SQLSTR
     self.find_by_sql(sql_str)
   end
   
   def self.get_complete(sort = "title", order = nil)
     sql_str = <<SQLSTR
-SELECT `lists`.* FROM `lists` WHERE `lists`.ongoing = FALSE ORDER BY #{sort}
+SELECT lists.* FROM lists WHERE lists.ongoing = FALSE ORDER BY #{sort}
 SQLSTR
     self.find_by_sql(sql_str)
   end
