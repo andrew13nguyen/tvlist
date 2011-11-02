@@ -10,16 +10,16 @@
 			</div>
 			<div class="list_col2 text_center float_left">
 				<% if params[:sort] != "episode" %>
-					<%= link_to "On Episode", :sort => "episode" %>
+					<%= link_to "Last Watched", :sort => "episode" %>
 				<% else %>
-					<%= link_to "On Episode", :sort => "episode desc" %>
+					<%= link_to "Last Watched", :sort => "episode desc" %>
 				<% end %>
 			</div>
 			<div class="list_col3 text_center float_left">
 				<% if params[:sort] != "updated_at" %>
-					<%= link_to "Last Change", :sort => "updated_at" %>
+					<%= link_to "Last Changed", :sort => "updated_at" %>
 				<% else %>
-					<%= link_to "Last Change", :sort => "updated_at desc" %>
+					<%= link_to "Last Changed", :sort => "updated_at desc" %>
 				<% end %>
 			</div>
 			<div class="list_col4 text_center">Menu</div>
@@ -34,7 +34,7 @@
 				<div class="list_col3 text_center float_left"><%= series.updated_at.strftime("%B %d, %Y") %></div>
 				<div class="list_col4 text_center">
 					<% if "#{ul_id}" == "ongoing_list"%>
-						<%= link_to "Watched", list_path(series, :list => {:episode => series[:episode].next}), :method => :put %>&nbsp;&nbsp;
+						<%= link_to "Next", list_path(series, :list => {:episode => series[:episode].next}), :method => :put %>&nbsp;&nbsp;
 						<%= link_to "Edit", edit_list_path(series) %>&nbsp;&nbsp;
 						<%= link_to "Complete?", list_path(series, :list => {:ongoing => false}), :method => :put %>&nbsp;&nbsp;
 						<%= link_to "Delete", series, :confirm => 'Are you sure?', :method => :delete %>
