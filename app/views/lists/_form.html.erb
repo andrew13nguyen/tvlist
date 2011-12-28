@@ -31,6 +31,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#list_title").focus();
+		if ($("#container").find("h1").text() == "New TV Series")
+			$("#list_title").focus();
+		else
+			$("#list_episode").select();
 	});
 </script>
