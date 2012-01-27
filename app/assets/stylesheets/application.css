@@ -1,3 +1,40 @@
+body {margin:40px auto 10px;width:780px;background-color:#F8F8FF;font-family:Arial;font-size:12px;}
+/*body a {font-size:12px;}*/
+a:link {text-decoration: none}
+a:visited {text-decoration: none}
+a:active {text-decoration: none}
+a:hover {text-decoration: none;}
+
+.text_left {text-align:left;}
+.text_center {text-align:center;}
+.text_right {text-align:right;}
+.float_left {float:left;}
+.float_right {float:right;}
+.hidden {display:none;}
+.margin-right {margin-right:10px;}
+.whitespace {margin-bottom:20px;}
+
+#account_menu {position:fixed;top:10px;width:750px;}
+#top_notice {position:fixed;top:0px;width:750px;}
+#menu_fields {margin:0px auto;width:225px;}
+
+#ongoing_tvshow {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;}
+#ongoing_tvshow ul {margin:0px;padding:0px;}
+#ongoing_tvshow ul li {height:auto;width:auto;padding:5px 10px;list-style:none;}
+
+#completed_tvshow {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;display:none;}
+#completed_tvshow ul {margin:0px;padding:0px;}
+#completed_tvshow ul li {height:auto;width:auto;padding:5px 10px;list-style:none;}
+
+.tvshow_col1 {width:300px;}
+.tvshow_col2 {width:100px;}
+.tvshow_col3 {width:111px;}
+.tvshow_col4 {overflow:hidden;}
+
+.entry {border:none;border-top:solid 2px;border-color:gray;}
+
+
+
 /*
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at

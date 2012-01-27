@@ -1,0 +1,67 @@
+<h1 class="text_center">TV Show Listings</h1>
+
+<div class="whitespace">
+	<a id="ongoing" href="#">[ - ] ONGOING TV SHOW</a>
+	<%= render :partial => "show_tvshow", :locals => {:ul_id => "ongoing_tvshow", :tvshow => @ongoing} %>
+</div>
+
+<div class="whitespace">
+	<a id="complete" href="#">[ + ] COMPLETED TV SHOW</a>
+	<%= render :partial => "show_tvshow", :locals => {:ul_id => "completed_tvshow", :tvshow => @complete} %>
+</div>
+
+<div id="account_menu">
+	<div class="float_right">
+		<% if user_signed_in? %>
+			<span class="margin-right">
+				<%= link_to "TV Show List", tvshows_path %>
+			</span>
+			<span class="margin-right">
+				<%= link_to('Account Settings', edit_user_registration_path) %>
+			</span>
+			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+		<% else %>
+			<span class="margin-right">
+				<%= link_to('Register', new_user_registration_path)  %>
+			</span>
+			<%= link_to('Login', new_user_session_path)  %>  
+		<% end %>
+	</div>
+</div>
+
+<script type="text/javascript" language="javascript">
+	var toggle = "-";
+	$(document).ready(function() {
+		var ongoing_var = $.cookie("ongoing");
+	    var complete_var = $.cookie("complete");
+		if (ongoing_var == "hide")
+			$("#ongoing").click();
+		if (complete_var == "show")
+			$("#complete").click();
+	});
+	$("#ongoing").click(function() {
+		if ($(this).html() == "[ - ] ONGOING TV SHOW") {
+			$(this).html("[ + ] ONGOING TV SHOW");
+			$("#ongoing_tvshow").hide();
+			$.cookie("ongoing", "hide");
+		} else {
+			$(this).html("[ - ] ONGOING TV SHOW");
+			$("#ongoing_tvshow").show();
+			$.cookie("ongoing", "show");
+		}
+		return false;
+	});
+	$("#complete").click(function() {
+		if ($(this).html() == "[ - ] COMPLETED TV SHOW") {
+			$(this).html("[ + ] COMPLETED TV SHOW");
+			$("#completed_tvshow").hide();
+			$.cookie("complete", "hide");
+		} else {
+			$(this).html("[ - ] COMPLETED TV SHOW");
+			$("#completed_tvshow").show();
+			$.cookie("complete", "show");
+		}
+		return false;
+	});
+	
+</script>

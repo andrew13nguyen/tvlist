@@ -1,0 +1,41 @@
+<%= form_for(@tvshow) do |f| %>
+	<% if @tvshow.errors.any? %>
+	    <div id="error_explanation">
+			<h2><%= pluralize(@tvshow.errors.count, "error") %> prohibited this tvshow from being saved:</h2>
+
+			<ul>
+				<% @tvshow.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		<%= f.label :episode %><br />
+		<%= f.number_field :episode %>
+	</div>
+	<div class="field whitespace">
+		<%= f.label :ongoing %><br />
+		<%= f.check_box :ongoing %>
+	</div>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :date, :value => Time.now %>
+	<div class="actions float_right">
+		<%= f.submit %>
+	</div>
+	<div style="clear:both;"></div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		if ($("body").find("h1").text() == "New TV Series")
+			$("#tvshow_title").focus();
+		else
+			$("#tvshow_episode").select();
+	});
+</script>
