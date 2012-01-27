@@ -46,10 +46,20 @@ test:
   username: tv
   password:
 
-production:
-  adapter: postgresql
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: tv_production
+#   pool: 5
+#   username: tv
+#   password:
+
+# production for heroku
+production: 
   encoding: unicode
-  database: tv_production
-  pool: 5
-  username: tv
-  password:
+  adapter: postgresql
+  username: aonvqakuve
+  port: 5432
+  host: ec2-75-101-128-172.compute-1.amazonaws.com
+  database: aonvqakuve
+  password: qg0xxqAjK1QRSlhLPrVL
