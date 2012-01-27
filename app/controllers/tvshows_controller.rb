@@ -19,7 +19,7 @@ class TvshowsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to :root }
+        format.html { redirect_to "#{Rails.root.to_s}/users/sign_in" }
         format.json { head :ok }
       end
     end
