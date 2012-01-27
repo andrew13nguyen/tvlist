@@ -1,4 +1,4 @@
-class CreateTvshow < ActiveRecord::Migration
+class CreateTvshows < ActiveRecord::Migration
   def change
     create_table :tvshows do |t|
       t.integer :user_id
