@@ -1,9 +1,13 @@
 Tv::Application.routes.draw do
   devise_for :users
 
-  resources :tvshows
-
   root :to => "home#index"
+  
+  match "/:controller/:id/:action"
+  
+  resources :tvshows
+  
+  match "*path", :controller => "application", :action => "not_found"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

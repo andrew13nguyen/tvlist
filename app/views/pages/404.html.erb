@@ -1,0 +1,25 @@
+<div style="margin:40px auto;width:500px;">
+	<h1>You've reached this page in error.</h1>
+	<p>Redirecting you in 5 seconds.</p>
+</div>
+
+<div id="type" class="hidden">
+	<% if user_signed_in? %>
+		TRUE
+	<% else %>
+		FALSE
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	var timer;
+	function redirect() {
+		if ($("#type").text() == "TRUE")
+			window.location.href = "/";
+		else
+			window.location.href = "/tvshows"
+	};
+	$(document).ready(function() {
+		timer = setTimeout("redirect()", 5000);
+	});
+</script>
