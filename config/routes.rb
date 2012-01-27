@@ -1,4 +1,6 @@
 Tv::Application.routes.draw do
+  devise_for :users
+
   resources :tvshows
 
   root :to => "home#index"
