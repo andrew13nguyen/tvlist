@@ -14,8 +14,8 @@ a:hover {text-decoration: none;}
 .margin-right {margin-right:10px;}
 .whitespace {margin-bottom:20px;}
 
-#account_menu {top:10px;width:750px;}
-#top_notice {top:0px;width:750px;}
+#account_menu {position:absolute;top:10px;width:750px;}
+#top_notice {position:absolute;top:0px;width:750px;}
 #menu_fields {margin:0px auto;width:225px;}
 
 #ongoing_tvshow {width:auto;margin-top:5px;border:solid 2px;border-radius:10px;border-color:gray;text-align:left;}
