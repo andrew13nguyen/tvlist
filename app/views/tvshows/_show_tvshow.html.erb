@@ -27,8 +27,12 @@
 		</li>
 		<div style="clear:both;"></div>
 			
+		<% if "#{ul_id}" == "ongoing_tvshow" %>
+			<li class="entry">
+				<div class="tvshow_col2 float_right"><%= link_to 'Add New Series', new_tvshow_path %></div>
+			</li>
+		<% end %>
 		<% tvshow.each do |series| %>
-			<li class="entry"><div class="tvshow_col2 float_right"><%= link_to 'Add New Series', new_tvshow_path %></div></li>
 			<li class="entry">
 				<div class="tvshow_col1 float_left"><%= series.title %></div>
 				<div class="tvshow_col2 text_center float_left"><%= series.episode %></div>
