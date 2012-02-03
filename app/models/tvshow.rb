@@ -4,7 +4,7 @@ class Tvshow < ActiveRecord::Base
   
   def change(params)
     if params[:episode].to_s != read_attribute(:episode).to_s
-      update_attributes(:title => params[:title], :episode => params[:episode], :date => Time.now+(3600*4), :ongoing => params[:ongoing])
+      update_attributes(:title => params[:title], :episode => params[:episode], :date => Time.now, :ongoing => params[:ongoing])
     else
       update_attributes(:title => params[:title], :ongoing => params[:ongoing])
     end
