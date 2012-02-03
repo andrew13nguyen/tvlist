@@ -88,7 +88,7 @@ class TvshowsController < ApplicationController
     if user_signed_in?
       if params[:id].to_s == current_user.id.to_s
         @tvshow = Tvshow.find(params[:id])
-        @tvshow.update_attribute(:episode, @tvshow[:episode].next)
+        # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
         if (params[:option] == "next")
           @tvshow[:episode] = @tvshow[:episode].next
         else
