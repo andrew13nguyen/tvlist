@@ -90,13 +90,11 @@ class TvshowsController < ApplicationController
         @tvshow = Tvshow.find(params[:id])
         # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
         if (params[:option] == "next")
-          # @tvshow[:episode] = @tvshow[:episode].next
-          tvcopy = @tvshow.dup
-          tvcopy[:episode] = tvcopy[:episode].next
-          @tvshow.change(tvcopy)
+          @tvshow[:episode] = @tvshow[:episode].next
         else
           @tvshow[:ongoing] = FALSE
         end
+        @tvshow.change(@tvshow)
       end
     
       respond_to do |format|
