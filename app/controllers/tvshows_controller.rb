@@ -19,10 +19,10 @@ class TvshowsController < ApplicationController
       @complete = Tvshow.get_complete(user_id)
     end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @tvshow }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render :json => @tvshow }
+    # end
   end
 
   def show
