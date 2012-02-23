@@ -1,7 +1,6 @@
 class TvshowsController < ApplicationController
   before_filter :require_login
   
-  private
   def require_login
     unless user_signed_in?
       # flash[:error] = "You must be logged in to access this section"
@@ -18,11 +17,13 @@ class TvshowsController < ApplicationController
       @ongoing = Tvshow.get_ongoing(user_id)
       @complete = Tvshow.get_complete(user_id)
     end
+    
+    puts "it is: #{@ongoing}"
 
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.json { render :json => @tvshow }
-    # end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @tvshow }
+    end
   end
 
   def show
