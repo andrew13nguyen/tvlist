@@ -73,11 +73,11 @@ class TvshowsController < ApplicationController
     if @tvshow.user_id == current_user.id
       # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
       if (params[:option] == "next")
-        @tvshow[:episode] = @tvshow[:episode].next
+        @tvshow.change(params[:option], @tvshow)
       else
         @tvshow[:ongoing] = FALSE
+        @tvshow.change("complete", @tvshow)
       end
-      @tvshow.change(@tvshow)
     end
   
     respond_to do |format|
@@ -94,7 +94,7 @@ class TvshowsController < ApplicationController
     @tvshow = Tvshow.find(params[:id])
 
     respond_to do |format|
-      if @tvshow.change(params[:tvshow])
+      if @tvshow.change("update", params[:tvshow])
         # format.html { redirect_to @tvshow, :notice => 'TV show was successfully updated.' }
         format.html { redirect_to tvshows_url }
         format.json { head :ok }

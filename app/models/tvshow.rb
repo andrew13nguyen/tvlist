@@ -2,12 +2,9 @@ class Tvshow < ActiveRecord::Base
   validates_presence_of :user_id, :title, :episode
   attr_accessible :user_id, :title, :episode, :ongoing, :date
   
-  def change(params)
-    puts "params are #{params}"
-    puts "time is: #{Time.now}"
-    puts "#{params[:episode].to_s} and #{self.episode.to_s}"
-    unless params[:episode].to_s == self.episode.to_s
-      update_attributes(:title => params[:title], :episode => params[:episode].to_i, :date => Time.now, :ongoing => params[:ongoing])
+  def change(option, params)
+    if option == "next"
+      update_attributes(:title => params[:title], :episode => params[:episode].next, :date => Time.now, :ongoing => params[:ongoing])
     else
       update_attributes(:title => params[:title], :ongoing => params[:ongoing])
     end
