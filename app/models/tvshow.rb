@@ -15,7 +15,8 @@ class Tvshow < ActiveRecord::Base
 # SELECT tvshows.* FROM tvshows WHERE tvshows.user_id = #{user_id} AND tvshows.ongoing = TRUE ORDER BY #{sort}
 # SQLSTR
 #     self.find_by_sql(sql_str)
-    Tvshow.find(:all, :conditions => ["user_id = ? and ongoing = ?", user_id, true], :order => sort)
+    shows = Tvshow.find(:all, :conditions => ["user_id = ? and ongoing = ?", user_id, true], :order => sort)
+    return shows
   end
   
   def self.get_complete(user_id, sort = "title", order = nil)
@@ -23,6 +24,7 @@ class Tvshow < ActiveRecord::Base
 # SELECT tvshows.* FROM tvshows WHERE tvshows.user_id = #{user_id} AND tvshows.ongoing = FALSE ORDER BY #{sort}
 # SQLSTR
 #     self.find_by_sql(sql_str)
-    Tvshow.find(:all, :conditions => ["user_id = ? and ongoing = ?", user_id, false], :order => sort)
+    shows = Tvshow.find(:all, :conditions => ["user_id = ? and ongoing = ?", user_id, false], :order => sort)
+    return shows
   end
 end
