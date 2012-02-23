@@ -17,8 +17,6 @@ class TvshowsController < ApplicationController
       @ongoing = Tvshow.get_ongoing(user_id)
       @complete = Tvshow.get_complete(user_id)
     end
-    
-    puts "it is: #{@ongoing}"
 
     respond_to do |format|
       format.html # index.html.erb
