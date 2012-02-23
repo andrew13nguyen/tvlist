@@ -1,27 +1,28 @@
 class TvshowsController < ApplicationController
+  before_filter :require_login
+  
+  def require_login
+    unless user_signed_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to redirect_to "/users/sign_in"
+    end
+  end
   
   # GET /tvshows
   # GET /tvshows.json
   def index
-    if user_signed_in?
-      user_id = current_user.id
-      unless params[:sort].nil?
-        @ongoing = Tvshow.get_ongoing(user_id, params[:sort])
-        @complete = Tvshow.get_complete(user_id, params[:sort])
-      else
-        @ongoing = Tvshow.get_ongoing(user_id)
-        @complete = Tvshow.get_complete(user_id)
-      end
-
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render :json => @tvshow }
-      end
+    user_id = current_user.id
+    unless params[:sort].nil?
+      @ongoing = Tvshow.get_ongoing(user_id, params[:sort])
+      @complete = Tvshow.get_complete(user_id, params[:sort])
     else
-      respond_to do |format|
-        format.html { redirect_to "/users/sign_in" }
-        format.json { head :ok }
-      end
+      @ongoing = Tvshow.get_ongoing(user_id)
+      @complete = Tvshow.get_complete(user_id)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @tvshow }
     end
   end
 
@@ -49,17 +50,10 @@ class TvshowsController < ApplicationController
 
   # GET /tvshows/1/edit
   def edit
-    if user_signed_in?
-      @tvshow = Tvshow.find(params[:id])
-      unless @tvshow.user_id == current_user.id
-        respond_to do |format|
-          format.html { redirect_to tvshows_url }
-          format.json { head :ok }
-        end
-      end
-    else
+    @tvshow = Tvshow.find(params[:id])
+    unless @tvshow.user_id == current_user.id
       respond_to do |format|
-        format.html { redirect_to :root }
+        format.html { redirect_to tvshows_url }
         format.json { head :ok }
       end
     end
@@ -84,31 +78,24 @@ class TvshowsController < ApplicationController
   end
 
   def change
-    if user_signed_in?
-      @tvshow = Tvshow.find(params[:id])
-      if @tvshow.user_id == current_user.id
-        # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
-        if (params[:option] == "next")
-          @tvshow[:episode] = @tvshow[:episode].next
-        else
-          @tvshow[:ongoing] = FALSE
-        end
-        @tvshow.change(@tvshow)
+    @tvshow = Tvshow.find(params[:id])
+    if @tvshow.user_id == current_user.id
+      # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
+      if (params[:option] == "next")
+        @tvshow[:episode] = @tvshow[:episode].next
+      else
+        @tvshow[:ongoing] = FALSE
       end
-    
-      respond_to do |format|
-        if params[:sort]
-          format.html { redirect_to "/tvshows/?sort="+params[:sort].sub(' ', '+') }
-        else
-          format.html { redirect_to tvshows_url }
-        end
-        format.json { head :ok }
+      @tvshow.change(@tvshow)
+    end
+  
+    respond_to do |format|
+      if params[:sort]
+        format.html { redirect_to "/tvshows/?sort="+params[:sort].sub(' ', '+') }
+      else
+        format.html { redirect_to tvshows_url }
       end
-    else
-      respond_to do |format|
-        format.html { redirect_to :root }
-        format.json { head :ok }
-      end
+      format.json { head :ok }
     end
   end
 
