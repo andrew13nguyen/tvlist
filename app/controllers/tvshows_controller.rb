@@ -4,13 +4,13 @@ class TvshowsController < ApplicationController
   # GET /tvshows.json
   def index
     if user_signed_in?
-      @user_id = current_user.id
+      user_id = current_user.id
       unless params[:sort].nil?
-        @ongoing = Tvshow.get_ongoing(@user_id, params[:sort])
-        @complete = Tvshow.get_complete(@user_id, params[:sort])
+        @ongoing = Tvshow.get_ongoing(user_id, params[:sort])
+        @complete = Tvshow.get_complete(user_id, params[:sort])
       else
-        @ongoing = Tvshow.get_ongoing(@user_id)
-        @complete = Tvshow.get_complete(@user_id)
+        @ongoing = Tvshow.get_ongoing(user_id)
+        @complete = Tvshow.get_complete(user_id)
       end
 
       respond_to do |format|
@@ -50,9 +50,8 @@ class TvshowsController < ApplicationController
   # GET /tvshows/1/edit
   def edit
     if user_signed_in?
-      if params[:id].to_s == current_user.id.to_s
-        @tvshow = Tvshow.find(params[:id])
-      else
+      @tvshow = Tvshow.find(params[:id])
+      unless @tvshow.user_id == current_user.id
         respond_to do |format|
           format.html { redirect_to tvshows_url }
           format.json { head :ok }
@@ -86,8 +85,8 @@ class TvshowsController < ApplicationController
 
   def change
     if user_signed_in?
-      if params[:id].to_s == current_user.id.to_s
-        @tvshow = Tvshow.find(params[:id])
+      @tvshow = Tvshow.find(params[:id])
+      if @tvshow.user_id == current_user.id
         # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
         if (params[:option] == "next")
           @tvshow[:episode] = @tvshow[:episode].next
