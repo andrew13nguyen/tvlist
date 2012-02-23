@@ -1,24 +1,12 @@
 class TvshowsController < ApplicationController
   before_filter :require_login
   
+  private
   def require_login
     unless user_signed_in?
-      flash[:error] = "You must be logged in to access this section"
+      # flash[:error] = "You must be logged in to access this section"
       redirect_to redirect_to "/users/sign_in"
     end
-  end
-  
-  def flash_helper
-      f_names = [:notice, :warning, :message]
-      fl = ''
-
-      for name in f_names
-        if flash[name]
-          fl = fl + "<div class=\"notice\">#{flash[name]}</div>"
-        end
-      flash[name] = nil;
-    end
-    return fl
   end
 
   def index
