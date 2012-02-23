@@ -3,8 +3,8 @@ class Tvshow < ActiveRecord::Base
   attr_accessible :user_id, :title, :episode, :ongoing, :date
   
   def change(params)
-    if params[:episode].to_s != read_attribute(:episode).to_s
-      update_attributes(:title => params[:title], :episode => params[:episode], :date => Time.now, :ongoing => params[:ongoing])
+    unless params[:episode].to_s == self.episode.to_s
+      update_attributes(:title => params[:title], :episode => params[:episode].to_i, :date => Time.now, :ongoing => params[:ongoing])
     else
       update_attributes(:title => params[:title], :ongoing => params[:ongoing])
     end
