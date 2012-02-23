@@ -8,8 +8,19 @@ class TvshowsController < ApplicationController
     end
   end
   
-  # GET /tvshows
-  # GET /tvshows.json
+  def flash_helper
+      f_names = [:notice, :warning, :message]
+      fl = ''
+
+      for name in f_names
+        if flash[name]
+          fl = fl + "<div class=\"notice\">#{flash[name]}</div>"
+        end
+      flash[name] = nil;
+    end
+    return fl
+  end
+
   def index
     user_id = current_user.id
     unless params[:sort].nil?
@@ -26,8 +37,6 @@ class TvshowsController < ApplicationController
     end
   end
 
-  # GET /tvshows/1
-  # GET /tvshows/1.json
   def show
     @tvshow = Tvshow.find(params[:id])
     
@@ -37,8 +46,6 @@ class TvshowsController < ApplicationController
     end
   end
 
-  # GET /tvshows/new
-  # GET /tvshows/new.json
   def new
     @tvshow = Tvshow.new
 
@@ -48,7 +55,6 @@ class TvshowsController < ApplicationController
     end
   end
 
-  # GET /tvshows/1/edit
   def edit
     @tvshow = Tvshow.find(params[:id])
     unless @tvshow.user_id == current_user.id
@@ -59,8 +65,6 @@ class TvshowsController < ApplicationController
     end
   end
 
-  # POST /tvshows
-  # POST /tvshows.json
   def create
     @tvshow = Tvshow.new(params[:tvshow])
 
@@ -99,8 +103,6 @@ class TvshowsController < ApplicationController
     end
   end
 
-  # PUT /tvshows/1
-  # PUT /tvshows/1.json
   def update
     @tvshow = Tvshow.find(params[:id])
 
@@ -116,8 +118,6 @@ class TvshowsController < ApplicationController
     end
   end
 
-  # DELETE /tvshows/1
-  # DELETE /tvshows/1.json
   def destroy
     @tvshow = Tvshow.find(params[:id])
     @tvshow.destroy
