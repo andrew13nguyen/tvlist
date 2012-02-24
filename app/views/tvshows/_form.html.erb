@@ -24,7 +24,7 @@
 		<%= f.check_box :ongoing %>
 	</div>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
-		<%= f.hidden_field :date, :value => Time.now %>
+		<%= f.hidden_field :date, :value => Time.now.getlocal %>
 	<div class="actions float_right">
 		<%= f.submit "Add TV Series" %>
 	</div>
