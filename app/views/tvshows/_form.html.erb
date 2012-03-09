@@ -1,4 +1,5 @@
-<%= form_for(@tvshow) do |f| %>
+<%= form_for @tvshow, :html => {:class => "form-inline"} do |f| %>
+<%#= form_for(@tvshow) do |f| %>
 	<% if @tvshow.errors.any? %>
 	    <div id="error_explanation">
 			<h2><%= pluralize(@tvshow.errors.count, "error") %> prohibited this tvshow from being saved:</h2>
@@ -12,22 +13,21 @@
 	<% end %>
 
 	<div class="field">
-		<%= f.label :title %><br />
+		<%= f.label :title %>
 		<%= f.text_field :title %>
 	</div>
 	<div class="field">
-		<%= f.label :episode %><br />
+		<%= f.label :episode %>
 		<%= f.number_field :episode %>
 	</div>
 	<div class="field whitespace">
-		<%= f.label :ongoing %><br />
 		<%= f.check_box :ongoing %>
+		<%= f.label :ongoing %>
 	</div>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<%= f.hidden_field :date, :value => Time.now %>
 	<div class="actions float_right">
-		<%#= f.submit "Add TV Series" %>
-		<%= f.submit submit_label %>
+		<%= f.submit submit_label, :class => "btn-success" %>
 	</div>
 	<div style="clear:both;"></div>
 <% end %>
