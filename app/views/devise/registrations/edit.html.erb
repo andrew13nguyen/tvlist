@@ -16,15 +16,16 @@
 		<div class="whitespace"><%= f.label :password_confirmation %>
 		<%= f.password_field :password_confirmation %></div>
 
-		<div class="pull-right"><%= f.submit "Update", :class => "btn-success" %></div>
+		<div class="whitespace pull-right"><%= f.submit "Update", :class => "btn btn-success" %></div>
 	<% end %>
 
+	<%= link_to "Back", :back, :class => "btn btn-inverse" %>
+	
 	<div class="float_right">
 		<h3>Cancel my account</h3>
 
 		<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 	</div>
 	
-	<div class="clearboth"></div>
-	<%= link_to "Back", :back %>
+	
 </div>
