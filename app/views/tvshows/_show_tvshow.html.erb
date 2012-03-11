@@ -29,7 +29,10 @@
 			
 		<% if "#{ul_id}" == "ongoing_tvshow" && tvshow.length > 1 %>
 			<li class="entry">
-				<div class="tvshow_col2 float_right"><%= link_to 'Add New Series', new_tvshow_path %></div>
+				<div class="tvshow_col2 float_right">
+					<%#= link_to 'Add New Series', new_tvshow_path %>
+					<a class="new" href="#" title="New TV Series">Add New Series</a>
+				</div>
 				<div style="clear:both;"></div>
 			</li>
 		<% end %>
@@ -41,7 +44,8 @@
 				<div class="tvshow_col4 text_center">
 					<% if "#{ul_id}" == "ongoing_tvshow"%>
 						<%= link_to "Next", :id => series, :action => :change, :sort => params[:sort], :option => "next" %>&nbsp;&nbsp;
-						<%= link_to "Edit", edit_tvshow_path(series) %>&nbsp;&nbsp;
+						<%#= link_to "Edit", edit_tvshow_path(series) %><!-- &nbsp;&nbsp; -->
+						<a class="edit" href="#" value="<%=series.id%>" title="Editing TV Show">Edit</a>&nbsp;&nbsp;
 						<%= link_to "Complete?", :id => series, :action => :change, :sort => params[:sort], :option => "complete" %>&nbsp;&nbsp;
 						<%= link_to "Delete", series, :confirm => 'Are you sure?', :method => :delete %>
 					<% else %>
@@ -55,7 +59,10 @@
 		<% end %>
 		<% if "#{ul_id}" == "ongoing_tvshow" %>
 			<li class="entry">
-				<div class="tvshow_col2 float_right"><%= link_to 'Add New Series', new_tvshow_path %></div>
+				<div class="tvshow_col2 float_right">
+					<%#= link_to 'Add New Series', new_tvshow_path %>
+					<a class="new" href="#" title="New TV Series">Add New Series</a>
+				</div>
 				<div style="clear:both;"></div>
 			</li>
 		<% end %>

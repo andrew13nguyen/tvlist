@@ -1,3 +1,4 @@
+<div class="menu_fields" class="modal-body">
 <%= form_for @tvshow, :html => {:class => "form-inline"} do |f| %>
 <%#= form_for(@tvshow) do |f| %>
 	<% if @tvshow.errors.any? %>
@@ -26,14 +27,17 @@
 	</div>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<%= f.hidden_field :date, :value => Time.now %>
-	<div class="actions float_right">
+</div>
+		
+	<div class="modal-footer">
+		<a class="close btn btn-inverse" data-dismiss="modal">Close</a>
 		<%= f.submit submit_label, :class => "btn btn-success" %>
 	</div>
 <% end %>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		if ($("body").find("h1").text() == "New TV Series")
+		if ($("#edit_modal > .modal-header > h1").html() == "New TV Series")
 			$("#tvshow_title").focus();
 		else
 			$("#tvshow_episode").select();

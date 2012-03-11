@@ -8,6 +8,15 @@
 	<%= render :partial => "show_tvshow", :locals => {:ul_id => "completed_tvshow", :tvshow => @complete} %>
 </div>
 
+<div id="edit_modal" class="modal hide fade in">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h1></h1>
+	</div>
+	
+	<div></div>
+</div>
+
 <script type="text/javascript" language="javascript">
 	var toggle = "-";
 	$(document).ready(function() {
@@ -41,6 +50,19 @@
 			$.cookie("complete", "show");
 		}
 		return false;
+	});
+	
+	$(document).ready(function(){
+		$("#edit_modal").modal({show:false});
+	});
+	
+	$(document).on("click", ".edit, .new", function(){
+		$(".modal-header > h1").html($(this).attr("title"));
+		if ( $(this).attr("class") == "edit" )
+			$("#edit_modal > div:nth-child(2)").load("/tvshows/"+$(this).attr("value")+"/edit");
+		else
+			$("#edit_modal > div:nth-child(2)").load("/tvshows/new");
+		$("#edit_modal").modal("show");
 	});
 	
 </script>
