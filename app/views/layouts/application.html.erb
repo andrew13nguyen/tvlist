@@ -1,22 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-	<title>Tv List</title>
- 	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "application" %>
-  	<%= csrf_meta_tags %>
-</head>
-<body class="<%= params[:controller] %>">
-  	<div id="container">
-    <% flash.each do |name, msg| %>
-		<%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-    <%= yield %>
-  	</div>
-=======
 	<title>TV Show Listings</title>
-	<%= stylesheet_link_tag    "application", "bootstrap", "bootstrap-responsive" %>
+	<%= stylesheet_link_tag    "application", "bootstrap" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
@@ -66,6 +52,5 @@
 
 <%= yield %>
 
->>>>>>> 1093a01759a7522141bab1bf47f729da3bf16adc
 </body>
 </html>

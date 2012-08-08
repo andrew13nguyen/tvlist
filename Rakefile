@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Tvlist::Application.load_tasks
+Tv::Application.load_tasks

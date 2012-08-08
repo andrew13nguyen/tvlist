@@ -1,4 +1,4 @@
-Tvlist::Application.routes.draw do
+Tv::Application.routes.draw do
   root :to => "home#index"
 
   # match 'users', :to => "users#new"
