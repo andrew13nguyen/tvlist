@@ -10,21 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026230352) do
+ActiveRecord::Schema.define(:version => 20120127033707) do
 
-  create_table "lists", :force => true do |t|
+  create_table "tvshows", :force => true do |t|
+    t.integer  "user_id"
     t.string   "title"
-    t.integer  "episode",    :default => 1
-    t.boolean  "ongoing",    :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "episode", :default => 1
+    t.boolean  "ongoing", :default => true
+    t.datetime "date",    :default => '2012-02-03 06:03:58'
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "password_digest"
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 end

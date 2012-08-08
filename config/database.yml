@@ -32,8 +32,6 @@ test:
   socket: /tmp/mysql.sock
 
 # Database information for Heroku
-postgres://paysavclgtnixo:xy-_RWvcvRzpNYS3E_ah6u_zJX@ec2-107-22-160-249.compute-1.amazonaws.com:5432/d1n3uvkgmo0277
-
 production: 
   encoding: unicode
   adapter: postgresql
@@ -46,13 +44,3 @@ production:
   password: xy-_RWvcvRzpNYS3E_ah6u_zJX
   host: ec2-107-22-160-249.compute-1.amazonaws.com
   database: d1n3uvkgmo0277
-
-# production:
-#   adapter: mysql2
-#   encoding: utf8
-#   reconnect: false
-#   database: tvlist_production
-#   pool: 5
-#   username: root
-#   password:
-#   socket: /tmp/mysql.sock

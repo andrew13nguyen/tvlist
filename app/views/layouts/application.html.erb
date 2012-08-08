@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 	<title>Tv List</title>
  	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "application" %>
@@ -13,5 +14,58 @@
     <% end %>
     <%= yield %>
   	</div>
+=======
+	<title>TV Show Listings</title>
+	<%= stylesheet_link_tag    "application", "bootstrap", "bootstrap-responsive" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<div id="top_notice hidden">
+		<p class="notice hidden"><%= notice %></p>
+		<p class="alert hidden"><%= alert %></p>
+	</div>
+	
+	<div class="navbar navbar-fixed-top">
+
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<% if user_signed_in? %>
+					<%= link_to "TV Show List", tvshows_path, :class => "brand" %>
+				<% else %>
+					<%= link_to "TV Shows", root_path, :class => "brand" %>
+				<% end %>
+
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
+						<% if user_signed_in? %>
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">Account <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><%= link_to('Settings', edit_user_registration_path)  %></li>
+									<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+								</ul>
+							</li>
+						<% else %>
+							<li><%= link_to('Register', new_user_registration_path)  %></li>
+							<li><%= link_to('Login', new_user_session_path)  %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="whitespace">&nbsp;</div>
+
+<%= yield %>
+
+>>>>>>> 1093a01759a7522141bab1bf47f729da3bf16adc
 </body>
 </html>

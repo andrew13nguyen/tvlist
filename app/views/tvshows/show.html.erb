@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @tvshow.title %>
+</p>
+
+<p>
+  <b>Episode:</b>
+  <%= @tvshow.episode %>
+</p>
+
+<p>
+  <b>Ongoing:</b>
+  <%= @tvshow.ongoing %>
+</p>
+
+
+<%= link_to 'Edit', edit_tvshow_path(@tvshow) %> |
+<%= link_to 'Back', tvshows_path %>
