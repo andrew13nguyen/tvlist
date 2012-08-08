@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Tv::Application.config.secret_token = '00127fb41f0dbb9406596501cc5503edef7a82db309e9a3edfe5a1e48fee47699b0000b67795ce3663dafe15a6df0e768fe67bd88478f5a1aee76d885ceda65d'
+Tv::Application.config.secret_token = 'cdce454c90e1edcdcad4a34cee8d934c9e6902dca056371580a02cd69dccfeaf40bb16669d78552c983849fb6056dce25a1e0d9c22ed7c908f295baf6d7f845b'

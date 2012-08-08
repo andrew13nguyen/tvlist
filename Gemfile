@@ -33,4 +33,3 @@ gem 'devise'
 # To use debugger
 # gem 'ruby-debug'
 
-gem 'bcrypt-ruby'

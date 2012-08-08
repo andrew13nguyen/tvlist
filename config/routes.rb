@@ -1,15 +1,14 @@
 Tv::Application.routes.draw do
+  devise_for :users
+
   root :to => "home#index"
-
-  # match 'users', :to => "users#new"
-  # match 'login', :to => "sessions#new"
-
-  resources :lists
-  # resources :users
-  # resource :session
-
-  # match '/:controller(/:action(/:id))'
   
+  match "/:controller/:id/:action"
+  
+  resources :tvshows
+  
+  match "*path", :controller => "application", :action => "not_found"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

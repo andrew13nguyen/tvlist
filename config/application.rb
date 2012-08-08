@@ -48,6 +48,7 @@ module Tv
     config.assets.initialize_on_precompile = false
     
     # Add files to precompile
+    config.assets.precompile += ['bootstrap-responsive.css']
     config.assets.precompile += ['bootstrap.css']
   end
 end
