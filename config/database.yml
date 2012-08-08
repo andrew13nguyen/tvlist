@@ -32,14 +32,20 @@ test:
   socket: /tmp/mysql.sock
 
 # Database information for Heroku
+postgres://paysavclgtnixo:xy-_RWvcvRzpNYS3E_ah6u_zJX@ec2-107-22-160-249.compute-1.amazonaws.com:5432/d1n3uvkgmo0277
+
 production: 
   encoding: unicode
   adapter: postgresql
-  username: jywjdkwlqq
+  # username: jywjdkwlqq
   port: 5432
-  host: ec2-107-20-148-48.compute-1.amazonaws.com
-  database: jywjdkwlqq
-  password: S9YpfzLcWuVnbwN3JK2z
+  # host: ec2-107-20-148-48.compute-1.amazonaws.com
+  # database: jywjdkwlqq
+  # password: S9YpfzLcWuVnbwN3JK2z
+  username: paysavclgtnixo
+  password: xy-_RWvcvRzpNYS3E_ah6u_zJX
+  host: ec2-107-22-160-249.compute-1.amazonaws.com
+  database: d1n3uvkgmo0277
 
 # production:
 #   adapter: mysql2
