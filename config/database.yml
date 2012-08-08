@@ -57,11 +57,15 @@ test:
 #   password:
 
 # production for heroku
-production: 
+production:
   encoding: unicode
   adapter: postgresql
-  username: aonvqakuve
+  # username: aonvqakuve
   port: 5432
-  host: ec2-75-101-128-172.compute-1.amazonaws.com
-  database: aonvqakuve
-  password: qg0xxqAjK1QRSlhLPrVL
+  # host: ec2-75-101-128-172.compute-1.amazonaws.com
+  # database: aonvqakuve
+  username: paysavclgtnixo
+  password: xy-_RWvcvRzpNYS3E_ah6u_zJX
+  host: ec2-107-22-160-249.compute-1.amazonaws.com:5432
+  database: d1n3uvkgmo0277
+  # password: qg0xxqAjK1QRSlhLPrVL
