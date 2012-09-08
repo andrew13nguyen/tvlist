@@ -29,10 +29,14 @@ a:hover {text-decoration: none;}
 
 .tvshow_col1 {width:300px;}
 .tvshow_col2 {width:100px;}
-.tvshow_col3 {width:111px;}
+.tvshow_col3 {width:115px;}
 .tvshow_col4 {overflow:hidden;}
 
 .entry {border:none;border-top:solid 2px;border-color:gray;}
+
+/* BOOTSTRAP OVERRIDES */
+.table {margin-bottom: 5px !important;}
+.table th, .table td {padding: 5px 8px !important; font-weight: normal !important;}
 
 
 
