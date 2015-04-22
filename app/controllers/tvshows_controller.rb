@@ -25,7 +25,7 @@ class TvshowsController < ApplicationController
   end
 
   def show
-    @tvshow = Tvshow.find(params[:id])
+    @tvshow = Tvshow.find_by_id(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
@@ -43,7 +43,7 @@ class TvshowsController < ApplicationController
   end
 
   def edit
-    @tvshow = Tvshow.find(params[:id])
+    @tvshow = Tvshow.find_by_id(params[:id])
     unless @tvshow.user_id == current_user.id
       respond_to do |format|
         format.html { redirect_to tvshows_url }
@@ -69,7 +69,7 @@ class TvshowsController < ApplicationController
   end
 
   def change
-    @tvshow = Tvshow.find(params[:id])
+    @tvshow = Tvshow.find_by_id(params[:id])
     if @tvshow.user_id == current_user.id
       # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
       if (params[:option] == "next")
@@ -91,7 +91,7 @@ class TvshowsController < ApplicationController
   end
 
   def update
-    @tvshow = Tvshow.find(params[:id])
+    @tvshow = Tvshow.find_by_id(params[:id])
 
     respond_to do |format|
       if @tvshow.change("update", params[:tvshow])
@@ -106,7 +106,7 @@ class TvshowsController < ApplicationController
   end
 
   def destroy
-    @tvshow = Tvshow.find(params[:id])
+    @tvshow = Tvshow.find_by_id(params[:id])
     @tvshow.destroy
 
     respond_to do |format|

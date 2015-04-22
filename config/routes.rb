@@ -3,11 +3,11 @@ Tv::Application.routes.draw do
 
   root :to => "home#index"
   
-  match "/:controller/:id/:action"
+  match "/:controller/:id/:action", via: [:get, :post]
   
   resources :tvshows
   
-  match "*path", :controller => "application", :action => "not_found"
+  match "*path", :controller => "application", :action => "not_found", via: [:get, :post]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
