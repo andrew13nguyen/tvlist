@@ -2,13 +2,15 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'pg'
-#gem 'mysql2'
-
 gem 'json'
+
+group :production do
+  gem 'pg'
+end
+
+group :development do
+  gem 'mysql2'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,4 +34,3 @@ gem 'devise'
 
 # To use debugger
 # gem 'ruby-debug'
-
