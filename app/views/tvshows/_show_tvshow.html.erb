@@ -38,12 +38,7 @@
     <% end %>
     <% tvshow.each do |series| %>
       <li class="entry">
-        <% if series.title.length > 45 %>
-          <% title = series.title.first(45)+'...' %>
-        <% else %>
-          <% title = series.title %>
-        <% end %>
-        <div class="tvshow_col1 float_left"><%= title %></div>
+        <div class="tvshow_col1 float_left"><%= series.title %></div>
         <div class="tvshow_col2 text_center float_left"><%= series.episode %></div>
         <div class="tvshow_col3 text_center float_left"><%= series.date.strftime("%B %d, %Y") %></div>
         <div class="tvshow_col4 text_center">
@@ -60,6 +55,7 @@
             Delete
           <% end %>
         </div>
+        <div style='clear:both;'></div>
       </li>
     <% end %>
     <% if "#{ul_id}" == "ongoing_tvshow" %>
