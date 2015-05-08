@@ -1,0 +1,148 @@
+.whitespace
+  %a#ongoing{:href => "#"} [ - ] ONGOING TV SHOW
+  = render 'show_tvshow', :ul_id => "ongoing_tvshow", :tvshow => @ongoing
+.whitespace
+  %a#complete{:href => "#"} [ + ] COMPLETED TV SHOW
+  = render 'show_tvshow', :ul_id => "completed_tvshow", :tvshow => @complete
+
+= render 'form'
+
+:javascript
+  var toggle = "-";
+  $(document).ready(function() {
+    var ongoing_var = $.cookie("ongoing");
+    var complete_var = $.cookie("complete");
+    if (ongoing_var == "hide")
+      $("#ongoing").click();
+    if (complete_var == "show")
+      $("#complete").click();
+  });
+
+  $("#ongoing").click(function() {
+    if ($(this).html() == "[ - ] ONGOING TV SHOW") {
+      $(this).html("[ + ] ONGOING TV SHOW");
+      $("#ongoing_tvshow").hide();
+      $.cookie("ongoing", "hide");
+    } else {
+      $(this).html("[ - ] ONGOING TV SHOW");
+      $("#ongoing_tvshow").show();
+      $.cookie("ongoing", "show");
+    }
+
+    return false;
+  });
+
+  $("#complete").click(function() {
+    if ($(this).html() == "[ - ] COMPLETED TV SHOW") {
+      $(this).html("[ + ] COMPLETED TV SHOW");
+      $("#completed_tvshow").hide();
+      $.cookie("complete", "hide");
+    } else {
+      $(this).html("[ - ] COMPLETED TV SHOW");
+      $("#completed_tvshow").show();
+      $.cookie("complete", "show");
+    }
+
+    return false;
+  });
+
+  $(document).on("click", ".edit, .new", function(){
+    if ( $(this).attr("class") == "new" ) {
+      // clear modal and form data
+      $('#tvshow_form_modal').data('action', 'new');
+      $('form').attr('action', '/tvshows');
+
+      $('.modal-title').html('Add TV Series');
+      $('#tvshow_title').val('');
+      $('#tvshow_episode').val(1);
+      $('#tvshow_ongoing').prop('checked', true);
+      $('#tvshow_form_modal #submit').text('Submit');
+
+      $('#tvshow_form_modal').modal('show');
+    } else {
+      // set modal and form data
+      var series = $(this).closest('.row').data();
+
+      $('#tvshow_form_modal').data('action', 'edit');
+      $('form').attr('action', $(this).attr('action'));
+
+      $('.modal-title').html('Edit TV Series');
+      $('#tvshow_title').val(series.title);
+      $('#tvshow_episode').val(series.episode);
+      $('#tvshow_ongoing').prop('checked', series.ongoing);
+      $('#tvshow_form_modal #submit').text('Confirm');
+
+      $('#tvshow_form_modal').modal('show');
+    }
+
+    return false;
+  });
+
+  $('#tvshow_form_modal').on('shown.bs.modal', function (){
+    if ($('#tvshow_form_modal').data('action') == 'new'){
+      $('#tvshow_title').focus();
+    } else {
+      $('#tvshow_episode').select();
+    }
+  });
+
+  $('#tvshow_form_modal').on('hidden.bs.modal', function (){
+    if ($('#tvshow_form_modal').data('action') == 'new'){
+      $('#tvshow_title').blur();
+    } else {
+      $('#tvshow_episode').replaceWith($('#tvshow_episode')[0].outerHTML);
+    }
+  });
+
+  $('form').on('submit', function(){
+    var action = $(this).attr('action');
+    var params = $("form").serialize();
+    if ($('#tvshow_form_modal').data('action') == 'edit'){
+      var params = params + '&' + $.param({ _method: 'patch' });
+    }
+    submitData(action, params, function(data){
+      $('#tvshow_form_modal').modal('hide');
+      updateData(JSON.parse(data));
+    });
+
+    return false;
+  });
+
+  $('.next, .complete').on('click', function(){
+    var action = $(this).attr('action');
+    submitData(action, {}, function(data){
+      updateData(JSON.parse(data));
+    });
+
+    return false;
+  });
+
+  function submitData(action, params, callback){
+    $.ajax({
+      url: action,
+      method: 'POST',
+      data: params,
+      dataType: "html"
+    }).done(callback);
+
+    return false;
+  }
+
+  function updateData(data){
+    var row = $('.row[data-id='+data.id+']')
+
+    // reload if the changed data probably needs to be resorted
+    if (row.data('title') != data.title || row.data('ongoing') != data.ongoing){
+      location.reload(); 
+    }
+
+    _.each(data, function(v,k){
+      if (row.data(k) != v){
+        row.data(k,v)
+        row.find('.'+k).fadeOut('slow', function(){
+          $(this).text(v).fadeIn('slow');
+        })
+      }
+    });
+  }
+

@@ -53,7 +53,7 @@ class TvshowsController < ApplicationController
   end
 
   def create
-    @tvshow = Tvshow.new(params[:tvshow])
+    @tvshow = Tvshow.new(tvshow_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @tvshow.save
@@ -70,39 +70,30 @@ class TvshowsController < ApplicationController
 
   def change
     @tvshow = Tvshow.find_by_id(params[:id])
-    if @tvshow.user_id == current_user.id
-      # @tvshow.update_attribute(:episode, @tvshow[:episode].next)
-      if (params[:option] == "next")
-        @tvshow.change(params[:option], @tvshow)
-      else
-        @tvshow[:ongoing] = FALSE
-        @tvshow.change("complete", @tvshow)
-      end
+
+    if @tvshow.change(params[:option], {user_id: current_user.id})
+      result = @tvshow.reload.attributes.except('user_id')
+      result['date'] = result['date'].strftime("%B %d, %Y")
+    else
+      Rails.logger.warn("didn't save correctly")
+      # TODO: make a failure result
     end
-  
-    respond_to do |format|
-      if params[:sort]
-        format.html { redirect_to "/tvshows/?sort="+params[:sort].sub(' ', '+') }
-      else
-        format.html { redirect_to tvshows_url }
-      end
-      format.json { head :ok }
-    end
+
+    render :json => result
   end
 
   def update
     @tvshow = Tvshow.find_by_id(params[:id])
 
-    respond_to do |format|
-      if @tvshow.change("update", params[:tvshow])
-        # format.html { redirect_to @tvshow, :notice => 'TV show was successfully updated.' }
-        format.html { redirect_to tvshows_url }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @tvshow.errors, :status => :unprocessable_entity }
-      end
+    if @tvshow.change('update', tvshow_params.merge(user_id: current_user.id))
+      result = @tvshow.reload.attributes.except('user_id')
+      result['date'] = result['date'].strftime("%B %d, %Y")
+    else
+      Rails.logger.warn("didn't save correctly")
+      # TODO: make a failure result
     end
+
+    render :json => result
   end
 
   def destroy
@@ -113,5 +104,11 @@ class TvshowsController < ApplicationController
       format.html { redirect_to tvshows_url }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def tvshow_params
+    params.require(:tvshow).permit(:title, :episode, :ongoing, :date)
   end
 end

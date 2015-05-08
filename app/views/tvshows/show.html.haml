@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %b Title:
+  = @tvshow.title
+%p
+  %b Episode:
+  = @tvshow.episode
+%p
+  %b Ongoing:
+  = @tvshow.ongoing
+= link_to 'Edit', edit_tvshow_path(@tvshow)
+|
+\#{link_to 'Back', tvshows_path}
