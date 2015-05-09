@@ -34,38 +34,37 @@ class TvshowsController < ApplicationController
   end
 
   def new
-    @tvshow = Tvshow.new
+    # @tvshow = Tvshow.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @tvshow }
-    end
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render :json => @tvshow }
+    # end
   end
 
   def edit
-    @tvshow = Tvshow.find_by_id(params[:id])
-    unless @tvshow.user_id == current_user.id
-      respond_to do |format|
-        format.html { redirect_to tvshows_url }
-        format.json { head :ok }
-      end
-    end
+    # @tvshow = Tvshow.find_by_id(params[:id])
+    # unless @tvshow.user_id == current_user.id
+    #   respond_to do |format|
+    #     format.html { redirect_to tvshows_url }
+    #     format.json { head :ok }
+    #   end
+    # end
   end
 
   def create
     @tvshow = Tvshow.new(tvshow_params.merge(user_id: current_user.id))
 
-    respond_to do |format|
-      if @tvshow.save
-        # format.html { redirect_to @tvshow, :notice => 'TV show was successfully created.' }
-        # format.json { render :json => @tvshow, :status => :created, :location => @tvshow }
-        format.html { redirect_to tvshows_url }
-        format.json { head :ok }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @tvshow.errors, :status => :unprocessable_entity }
-      end
+    if @tvshow.save
+      result = @tvshow.reload.attributes.except('user_id')
+      result['date'] = result['date'].strftime("%B %d, %Y")
+    else
+      Rails.logger.warn("didn't save correctly")
+      # TODO: make a failure result
+      # # format.json { render :json => @tvshow.errors, :status => :unprocessable_entity }
     end
+
+    render :json => result
   end
 
   def change
@@ -77,6 +76,7 @@ class TvshowsController < ApplicationController
     else
       Rails.logger.warn("didn't save correctly")
       # TODO: make a failure result
+      # # format.json { render :json => @tvshow.errors, :status => :unprocessable_entity }
     end
 
     render :json => result
@@ -91,6 +91,7 @@ class TvshowsController < ApplicationController
     else
       Rails.logger.warn("didn't save correctly")
       # TODO: make a failure result
+      # # format.json { render :json => @tvshow.errors, :status => :unprocessable_entity }
     end
 
     render :json => result

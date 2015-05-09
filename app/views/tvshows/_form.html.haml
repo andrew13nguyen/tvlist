@@ -1,11 +1,11 @@
 = form_for @tvshow=Tvshow.new, :html => {:class => 'form-inline'} do |f|
-  #tvshow_form_modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'myModalLabel', :role => 'dialog', :tabindex => '-1', data: {action: 'new'}}
+  #tvshow_form_modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'tvshow_form_label', :role => 'dialog', :tabindex => '-1', data: {action: 'new'}}
     .modal-dialog
       .modal-content
         .modal-header
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
             %span{"aria-hidden" => "true"} &times;
-          %h4#myModalLabel.modal-title Add TV Series
+          %h4#tvshow_form_label.modal-title Add TV Series
         .modal-body
           - if @tvshow.errors.any?
             #error_explanation
@@ -22,7 +22,7 @@
           .field
             = f.label :episode
             = f.number_field :episode
-          .field.whitespace
+          .field
             = f.check_box :ongoing
             = f.label :ongoing
           = f.hidden_field :date, :value => Time.now

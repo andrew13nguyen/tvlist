@@ -1,9 +1,13 @@
-.whitespace
-  %a#ongoing{:href => "#"} [ - ] ONGOING TV SHOW
-  = render 'show_tvshow', :ul_id => "ongoing_tvshow", :tvshow => @ongoing
-.whitespace
-  %a#complete{:href => "#"} [ + ] COMPLETED TV SHOW
-  = render 'show_tvshow', :ul_id => "completed_tvshow", :tvshow => @complete
+%a#ongoing{:href => "#"} [ - ] ONGOING TV SHOW
+= render 'show_tvshow', :ul_id => "ongoing_tvshow", :tvshow => @ongoing
+
+%br
+
+%a#complete{:href => "#"} [ + ] COMPLETED TV SHOW
+= render 'show_tvshow', :ul_id => "completed_tvshow", :tvshow => @complete
+
+%br
+%br
 
 = render 'form'
 
@@ -21,11 +25,11 @@
   $("#ongoing").click(function() {
     if ($(this).html() == "[ - ] ONGOING TV SHOW") {
       $(this).html("[ + ] ONGOING TV SHOW");
-      $("#ongoing_tvshow").hide();
+      $("#ongoing_tvshow").addClass('hidden');
       $.cookie("ongoing", "hide");
     } else {
       $(this).html("[ - ] ONGOING TV SHOW");
-      $("#ongoing_tvshow").show();
+      $("#ongoing_tvshow").removeClass('hidden');
       $.cookie("ongoing", "show");
     }
 
@@ -35,11 +39,11 @@
   $("#complete").click(function() {
     if ($(this).html() == "[ - ] COMPLETED TV SHOW") {
       $(this).html("[ + ] COMPLETED TV SHOW");
-      $("#completed_tvshow").hide();
+      $("#completed_tvshow").addClass('hidden');
       $.cookie("complete", "hide");
     } else {
       $(this).html("[ - ] COMPLETED TV SHOW");
-      $("#completed_tvshow").show();
+      $("#completed_tvshow").removeClass('hidden');
       $.cookie("complete", "show");
     }
 
@@ -66,7 +70,7 @@
       $('#tvshow_form_modal').data('action', 'edit');
       $('form').attr('action', $(this).attr('action'));
 
-      $('.modal-title').html('Edit TV Series');
+      $('.modal-title').html(series.title);
       $('#tvshow_title').val(series.title);
       $('#tvshow_episode').val(series.episode);
       $('#tvshow_ongoing').prop('checked', series.ongoing);
