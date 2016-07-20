@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
+ruby "2.1.5"
 
 gem 'rails', '4.2.1'
-
 gem 'json'
 
 group :production do
@@ -21,5 +21,5 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'devise'
+gem 'devise', '4.2.0'
 gem 'haml'
