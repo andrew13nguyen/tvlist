@@ -1,4 +1,4 @@
-%div{id: ul_id, class: (ul_id.index('complete') ? 'hidden' : '')}
+%div{id: ul_id, class: (ul_id.index('completed') ? 'hidden' : '')}
   .row
     .col-xs-12.col-sm-4.col-md-5.col-lg-5.text-center
       - if params[:sort] != "title"
@@ -41,7 +41,7 @@
               |
               %a.edit{:href => '#', action: "/tvshows/#{series.id}"} Edit
               |
-              %a.complete{:href => '#', action: "/tvshows/#{series.id}/change?option=complete"} Complete?
+              %a.completed{:href => '#', action: "/tvshows/#{series.id}/change?option=completed"} Completed?
               |
               #{link_to "Delete", series, :confirm => 'Are you sure?', :method => :delete}
             - else

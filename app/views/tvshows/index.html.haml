@@ -3,8 +3,8 @@
 
 %br
 
-%a#complete{:href => "#"} [ + ] COMPLETED TV SHOW
-= render 'show_tvshow', :ul_id => "completed_tvshow", :tvshow => @complete
+%a#completed{:href => "#"} [ + ] COMPLETED TV SHOW
+= render 'show_tvshow', :ul_id => "completed_tvshow", :tvshow => @completed
 
 %br
 %br
@@ -15,11 +15,11 @@
   var toggle = "-";
   $(document).ready(function() {
     var ongoing_var = $.cookie("ongoing");
-    var complete_var = $.cookie("complete");
+    var completed_var = $.cookie("completed");
     if (ongoing_var == "hide")
       $("#ongoing").click();
-    if (complete_var == "show")
-      $("#complete").click();
+    if (completed_var == "show")
+      $("#completed").click();
   });
 
   $("#ongoing").click(function() {
@@ -36,15 +36,15 @@
     return false;
   });
 
-  $("#complete").click(function() {
+  $("#completed").click(function() {
     if ($(this).html() == "[ - ] COMPLETED TV SHOW") {
       $(this).html("[ + ] COMPLETED TV SHOW");
       $("#completed_tvshow").addClass('hidden');
-      $.cookie("complete", "hide");
+      $.cookie("completed", "hide");
     } else {
       $(this).html("[ - ] COMPLETED TV SHOW");
       $("#completed_tvshow").removeClass('hidden');
-      $.cookie("complete", "show");
+      $.cookie("completed", "show");
     }
 
     return false;
@@ -112,7 +112,7 @@
     return false;
   });
 
-  $('.next, .complete').on('click', function(){
+  $('.next, .completed').on('click', function(){
     var action = $(this).attr('action');
     submitData(action, {}, function(data){
       updateData(JSON.parse(data));

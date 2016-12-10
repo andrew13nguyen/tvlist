@@ -9,19 +9,8 @@ class TvshowsController < ApplicationController
   end
 
   def index
-    user_id = current_user.id
-    unless params[:sort].nil?
-      @ongoing = Tvshow.get_ongoing(user_id, params[:sort])
-      @complete = Tvshow.get_complete(user_id, params[:sort])
-    else
-      @ongoing = Tvshow.get_ongoing(user_id)
-      @complete = Tvshow.get_complete(user_id)
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @tvshow }
-    end
+    @ongoing = current_user.ongoing_tv_shows(sort: params[:sort])
+    @completed = current_user.completed_tv_shows(sort: params[:sort])
   end
 
   def show
@@ -34,22 +23,9 @@ class TvshowsController < ApplicationController
   end
 
   def new
-    # @tvshow = Tvshow.new
-
-    # respond_to do |format|
-    #   format.html # new.html.erb
-    #   format.json { render :json => @tvshow }
-    # end
   end
 
   def edit
-    # @tvshow = Tvshow.find_by_id(params[:id])
-    # unless @tvshow.user_id == current_user.id
-    #   respond_to do |format|
-    #     format.html { redirect_to tvshows_url }
-    #     format.json { head :ok }
-    #   end
-    # end
   end
 
   def create

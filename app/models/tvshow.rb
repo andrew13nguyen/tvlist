@@ -1,4 +1,7 @@
 class Tvshow < ActiveRecord::Base
+
+  belongs_to :user
+
   validates_presence_of :user_id, :title, :episode
   # attr_accessible :user_id, :title, :episode, :ongoing, :date
   
@@ -7,18 +10,11 @@ class Tvshow < ActiveRecord::Base
       false
     elsif option == 'next'
       update_attributes(episode: self.episode.next, date: Time.now)
-    elsif option == 'complete'
+    elsif option == 'completed'
       update_attributes(ongoing: false)
     else
       update_attributes(params.merge(date: Time.now))
     end
   end
-  
-  def self.get_ongoing(user_id, sort = 'title')
-    Tvshow.where(user_id: user_id, ongoing: true).order(sort)
-  end
-  
-  def self.get_complete(user_id, sort = 'title', order = nil)
-    Tvshow.where(user_id: user_id, ongoing: false).order(sort)
-  end
+
 end
