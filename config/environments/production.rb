@@ -33,6 +33,8 @@ Tv::Application.configure do
   # See everything in the log (default is :info)
   config.log_level = :info
 
+  config.eager_load = true
+
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
 
