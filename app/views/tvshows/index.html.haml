@@ -13,17 +13,25 @@
 
 :javascript
   var toggle = "-";
-  $(document).ready(function() {
+
+  $(document).ready(function(){
     var ongoing_var = $.cookie("ongoing");
     var completed_var = $.cookie("completed");
+
     if (ongoing_var == "hide")
       $("#ongoing").click();
     if (completed_var == "show")
       $("#completed").click();
+
+    setInterval(ping, 30000);
   });
 
-  $("#ongoing").click(function() {
-    if ($(this).html() == "[ - ] ONGOING TV SHOW") {
+  function ping(){
+    $.ajax({url: '/ping'});
+  }
+
+  $("#ongoing").click(function(){
+    if ($(this).html() == "[ - ] ONGOING TV SHOW"){
       $(this).html("[ + ] ONGOING TV SHOW");
       $("#ongoing_tvshow").addClass('hidden');
       $.cookie("ongoing", "hide");
@@ -36,8 +44,8 @@
     return false;
   });
 
-  $("#completed").click(function() {
-    if ($(this).html() == "[ - ] COMPLETED TV SHOW") {
+  $("#completed").click(function(){
+    if ($(this).html() == "[ - ] COMPLETED TV SHOW"){
       $(this).html("[ + ] COMPLETED TV SHOW");
       $("#completed_tvshow").addClass('hidden');
       $.cookie("completed", "hide");
@@ -51,7 +59,7 @@
   });
 
   $(document).on("click", ".edit, .new", function(){
-    if ( $(this).attr("class") == "new" ) {
+    if ( $(this).attr("class") == "new" ){
       // clear modal and form data
       $('#tvshow_form_modal').data('action', 'new');
       $('form').attr('action', '/tvshows');

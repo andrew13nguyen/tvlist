@@ -7,14 +7,14 @@
         = link_to "Title", :sort => "title desc"
     .col-xs-12.col-sm-2.col-md-2.col-lg-2.text-center
       - if params[:sort] != "episode"
-        = link_to "Last Watched", :sort => "episode"
+        = link_to "Episode", :sort => "episode"
       - else
-        = link_to "Last Watched", :sort => "episode desc"
+        = link_to "Episode", :sort => "episode desc"
     .col-xs-12.col-sm-2.col-md-2.col-lg-2.text-center
       - if params[:sort] != "date"
-        = link_to "Date Watched", :sort => "date"
+        = link_to "Date", :sort => "date"
       - else
-        = link_to "Date Watched", :sort => "date desc"
+        = link_to "Date", :sort => "date desc"
     .col-xs-12.col-sm-4.col-md-3.col-lg-3.text-center
       Menu
 

@@ -88,4 +88,5 @@ class TvshowsController < ApplicationController
   def tvshow_params
     params.require(:tvshow).permit(:title, :episode, :ongoing, :date)
   end
+
 end

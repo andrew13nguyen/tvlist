@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root :to => "home#index"
   
+  match 'ping', to: 'home#ping', via: [:get]
   match "/:controller/:id/:action", via: [:get, :post]
   
   resources :tvshows
