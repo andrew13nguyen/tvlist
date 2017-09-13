@@ -33,7 +33,10 @@
       .row{data: {id: series.id, title: series.title, episode: series.episode, ongoing: (!!series.ongoing ? 1 : 0)}}
         .title.col-xs-12.col-sm-5.col-md-6.col-lg-6= series.title
         .episode.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center= series.episode
-        .date.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center= (series.date + ActiveSupport::TimeZone.new(current_user.time_zone).now.utc_offset).strftime("%B %d, %Y")
+        - if current_user.time_zone.present?
+          .date.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center= (series.date + ActiveSupport::TimeZone.new(current_user.time_zone).now.utc_offset).strftime("%B %d, %Y")
+        - else
+          .date.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center= series.date.strftime("%B %d, %Y")
         .col-xs-12.col-sm-3.col-md-2.col-lg-2
           .pull-right
             - if "#{ul_id}" == "ongoing_tvshow"
