@@ -4,4 +4,9 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+namespace :jobs do
+  task :work do
+  end
+end
+
 Tv::Application.load_tasks
