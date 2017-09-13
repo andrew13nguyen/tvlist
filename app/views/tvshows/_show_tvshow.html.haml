@@ -1,6 +1,6 @@
 %div{id: ul_id, class: (ul_id.index('completed') ? 'hidden' : '')}
   .row
-    .col-xs-12.col-sm-4.col-md-5.col-lg-5.text-center
+    .col-xs-12.col-sm-5.col-md-6.col-lg-6.text-center
       - if params[:sort] != "title"
         = link_to "Title", :sort => "title"
       - else
@@ -15,8 +15,11 @@
         = link_to "Date", :sort => "date"
       - else
         = link_to "Date", :sort => "date desc"
-    .col-xs-12.col-sm-4.col-md-3.col-lg-3.text-center
+    .col-xs-12.col-sm-3.col-md-2.col-lg-2.text-center
       Menu
+
+  .row
+    &nbsp;
 
   - if "#{ul_id}" == "ongoing_tvshow" && tvshow.length > 1
     .border-bottom
@@ -25,36 +28,30 @@
           .pull-right
             %a.new{:href => "#", :title => "New TV Series"} Add New Series
 
-  - tvshow.each do |series|
-    .border-bottom.entry
+  - tvshow.each_with_index do |series, index|
+    %div{class: (index + 1) != tvshow.count ? 'border-bottom entry' : 'entry'}
       .row{data: {id: series.id, title: series.title, episode: series.episode, ongoing: (!!series.ongoing ? 1 : 0)}}
-        .title.col-xs-12.col-sm-4.col-md-5.col-lg-5
-          = series.title
-        .episode.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center
-          = series.episode
-        .date.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center
-          = series.date.strftime("%B %d, %Y")
-        .col-xs-12.col-sm-4.col-md-3.col-lg-3
+        .title.col-xs-12.col-sm-5.col-md-6.col-lg-6= series.title
+        .episode.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center= series.episode
+        .date.col-xs-6.col-sm-2.col-md-2.col-lg-2.text-center= (series.date + ActiveSupport::TimeZone.new(current_user.time_zone).now.utc_offset).strftime("%B %d, %Y")
+        .col-xs-12.col-sm-3.col-md-2.col-lg-2
           .pull-right
             - if "#{ul_id}" == "ongoing_tvshow"
               %a.next{:href => '#', action: "/tvshows/#{series.id}/change?option=next"} Next
-              |
+              &nbsp;|&nbsp;
               %a.edit{:href => '#', action: "/tvshows/#{series.id}"} Edit
-              |
-              %a.completed{:href => '#', action: "/tvshows/#{series.id}/change?option=completed"} Completed?
-              |
+              &nbsp;|&nbsp;
               #{link_to "Delete", series, :confirm => 'Are you sure?', :method => :delete}
             - else
-              Watched
-              |
+              Next
+              &nbsp;|&nbsp;
               %a.edit{:href => '#', action: "/tvshows/#{series.id}"} Edit
-              |
-              Completed
-              |
+              &nbsp;|&nbsp;
               Delete
 
   - if "#{ul_id}" == "ongoing_tvshow"
-    .row
-      .col-xs-12.col-sm-12.col-md-12.col-lg-12
-        .pull-right
-          %a.new{:href => "#", :title => "New TV Series"} Add New Series
+    .border-top
+      .row
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12
+          .pull-right
+            %a.new{:href => "#", :title => "New TV Series"} Add New Series

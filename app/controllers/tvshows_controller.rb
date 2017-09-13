@@ -9,8 +9,8 @@ class TvshowsController < ApplicationController
   end
 
   def index
-    @ongoing = current_user.ongoing_tv_shows(sort: params[:sort])
-    @completed = current_user.completed_tv_shows(sort: params[:sort])
+    @ongoing = current_user.ongoing_tv_shows(sort: params[:sort].presence || current_user.default_sort)
+    @completed = current_user.completed_tv_shows(sort: params[:sort].presence || current_user.default_sort)
   end
 
   def show

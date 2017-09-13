@@ -10,6 +10,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  DEFAULT_SORT_VALUES = [
+    'title',
+    'title+desc',
+    'episode',
+    'episode+desc',
+    'date',
+    'date+desc'
+  ]
+
   def ongoing_tv_shows(sort: 'title')
     tvshows.where(ongoing: true).order(sort)
   end

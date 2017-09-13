@@ -2,37 +2,43 @@
   .col-xs-3.col-sm-3.col-md-3.col-lg-3
 
   .col-xs-12.col-sm-6.col-md-6.col-lg-6
-    %h2
-      Edit
-      = resource_name.to_s.humanize
+    %h2.text-center
+      Settings
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: 'form-horizontal'}) do |f|
       = devise_error_messages!
 
       .form-group
-        = f.label :email, class: 'col-sm-3 col-md-2 control-label'
-        .col-sm-9.col-md-10
+        = f.label :email, class: 'col-sm-3 col-md-3 control-label'
+        .col-sm-9.col-md-9
           = f.email_field :email, class: 'form-control'
 
       .form-group
-        = f.label :password, class: 'col-sm-3 col-md-2 control-label'
-        .col-sm-9.col-md-10
+        = f.label :current_password, class: 'col-sm-3 col-md-3 control-label'
+        .col-sm-9.col-md-9
+          = f.password_field :current_password, class: 'form-control'
+
+      .form-group
+        = f.label :password, class: 'col-sm-3 col-md-3 control-label'
+        .col-sm-9.col-md-9
           = f.password_field :password, class: 'form-control'
 
       .form-group
-        = f.label :password_confirmation, class: 'col-sm-3 col-md-2 control-label'
-        .col-sm-9.col-md-10
+        = f.label :password_confirmation, class: 'col-sm-3 col-md-3 control-label'
+        .col-sm-9.col-md-9
           = f.password_field :password_confirmation, class: 'form-control'
+
+      .form-group
+        = f.label :default_sort, class: 'col-sm-3 col-md-3 control-label'
+        .col-sm-9.col-md-9
+          = f.select :default_sort, @default_sort_values, {:include_blank => false, :prompt=>'Select Default Sort'}, class: 'form-control'
+
+      .form-group
+        = f.label :time_zone, class: 'col-sm-3 col-md-3 control-label'
+        .col-sm-9.col-md-9
+          = f.time_zone_select :time_zone, ActiveSupport::TimeZone.all, {:include_blank => false, :prompt=>'Select Time Zone'}, class: 'form-control'
 
       .form-group
         .col-sm-offset-3.col-md-offset-2.col-sm-9.col-md-10
           = f.submit 'Update', class: 'btn btn-success'
           = link_to 'Back', :back, class: 'btn btn-inverse'
-
-      .float_right
-        %h3 Cancel my account
-        %p
-          Unhappy?
-          =link_to 'Cancel my account', registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
-
-  .col-xs-12.col-sm-3.col-md-3.col-lg-3
